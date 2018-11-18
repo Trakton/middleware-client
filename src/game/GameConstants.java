@@ -14,7 +14,7 @@ public class GameConstants {
     static public final int INITIAL_PLAYER_2_X = BOARD_WIDTH - PLAYER_SIZE * 2;
     static public final int INITIAL_PLAYER_Y = BOARD_HEIGHT / 2 - PLAYER_SIZE / 2;
     static public final int INITIAL_LIVES = 3;
-    static public final int PLAYER_SPEED = 8;
+    static public final int PLAYER_SPEED = 12;
 
     //Live
     static public final int LIVE_Y = 30;
@@ -23,7 +23,7 @@ public class GameConstants {
     static public final int LIVE_PLAYER_2_X = BOARD_WIDTH - 3*LIVE_SIZE - 50;
 
     //Bullet
-    static public final int BULLET_SPEED = 1000;
+    static public final int BULLET_SPEED = 400;
 
     //Resources
     static public final String PLAYER_SPRITE = "src/resources/player.png";
