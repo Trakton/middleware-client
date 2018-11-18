@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 public class Game extends JFrame  {
 
     public Game() {
-        add(new GameLoop());
+        add(new GameLoop(123, 321));
         setResizable(false);
         pack();
         setTitle("Middleware Game Client");

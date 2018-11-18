@@ -39,4 +39,11 @@ public class EventsProducer {
         event.data.put(EventData.WINNER, Integer.toString(winner));
         GameLoop.events.add(event);
     }
+
+    static public void handleUser(int id, int lives){
+        Event event = new Event(EventTypes.USER);
+        event.data.put(EventData.ID, Integer.toString(id));
+        event.data.put(EventData.LIVES, Integer.toString(lives));
+        GameLoop.events.add(event);
+    }
 }

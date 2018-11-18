@@ -2,6 +2,7 @@ package game.entities;
 
 import game.GameLoop;
 import game.GameConstants;
+import game.events.EventsProducer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +20,6 @@ public class Player extends Sprite {
     public Player(int id, int x, int y){
         super(id, x, y, GameConstants.PLAYER_SPRITE);
 
-        enemy = id == GameConstants.PLAYER_ONE? GameConstants.PLAYER_TWO : GameConstants.PLAYER_ONE;
         lives = GameConstants.INITIAL_LIVES;
         bullets = new ArrayList<Bullet>();
         bulletCount = 0;
@@ -31,7 +31,7 @@ public class Player extends Sprite {
         for(Bullet bullet : this.bullets){
             bullet.update();
 
-            if(!bullet.outOfBounds() && !bullet.intersects(GameLoop.players[enemy])){
+            if(!bullet.outOfBounds() && !bullet.intersects(GameLoop.getEnemy(id))){
                 bullets.add(bullet);
             }
         }
@@ -40,18 +40,18 @@ public class Player extends Sprite {
     }
 
     public void fire(){
-        int direction = id == GameConstants.PLAYER_ONE? 1 : -1;
+        int direction = GameLoop.isPlayerOne(id)? 1 : -1;
         int x = this.x + this.sprite.getWidth(null) * direction;
         int y = this.y + this.sprite.getHeight(null) / 2;
         bullets.add(new Bullet(bulletCount++, x, y, direction));
     }
 
     public void moveUp(){
-        y -= GameConstants.PLAYER_SPEED * GameLoop.deltaTime();
+        y -= GameConstants.PLAYER_SPEED;
     }
 
     public void moveDown(){
-        y += GameConstants.PLAYER_SPEED * GameLoop.deltaTime();
+        y += GameConstants.PLAYER_SPEED;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class Player extends Sprite {
         }
 
         for(int i = 0; i < lives; i++){
-            int x = id == GameConstants.PLAYER_ONE? GameConstants.LIVE_PLAYER_1_X : GameConstants.LIVE_PLAYER_2_X;
+            int x = GameLoop.isPlayerOne(id)? GameConstants.LIVE_PLAYER_1_X : GameConstants.LIVE_PLAYER_2_X;
             Sprite live = new Sprite(i, x + i*GameConstants.LIVE_SIZE, GameConstants.LIVE_Y, GameConstants.LIVE_SPRITE);
             live.draw(g, target);
         }

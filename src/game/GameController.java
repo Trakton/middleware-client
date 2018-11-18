@@ -12,15 +12,15 @@ public class GameController extends KeyAdapter {
         if(GameLoop.state.state != GameStates.STARTED) return;
 
         if (e.getKeyCode() == KeyEvent.VK_UP) {
-            EventsProducer.handleMoveUp(GameConstants.PLAYER_ONE);
+            EventsProducer.handleMoveUp(GameLoop.getPlayerOne().id);
         }
 
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            EventsProducer.handleMoveDown(GameConstants.PLAYER_ONE);
+            EventsProducer.handleMoveDown(GameLoop.getPlayerOne().id);
         }
 
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-            EventsProducer.handleFire(GameConstants.PLAYER_ONE);
+            EventsProducer.handleFire(GameLoop.getPlayerOne().id);
         }
     }
 }

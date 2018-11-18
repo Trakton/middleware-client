@@ -13,7 +13,7 @@ import java.util.LinkedList;
 
 public class GameLoop extends JPanel implements ActionListener {
 
-    static public Player[] players;
+    static Player[] players;
     static public Queue<Event> events;
     static public GameState state;
 
@@ -24,13 +24,17 @@ public class GameLoop extends JPanel implements ActionListener {
     static public double deltaTime(){
         return (double)(currentFrameTime - lastFrameTime)/1_000_000_000.0;
     }
+    static public Player getPlayer(int id){ for(Player player: players) {if(player.id == id) return player;} return null;}
+    static public Player getEnemy(int id){ for(Player player: players) {if(player.id != id) return player;} return null;}
+    static public boolean isPlayerOne(int id){ return players[0].id == id;}
+    static public Player getPlayerOne() {return players[0];}
 
-    public GameLoop() {
+    public GameLoop(int playerOneID, int playerTwoID) {
         state = new GameState();
 
         players = new Player[2];
-        players[0] = new Player(GameConstants.PLAYER_ONE, GameConstants.INITIAL_PLAYER_1_X, GameConstants.INITIAL_PLAYER_Y);
-        players[1] = new Player(GameConstants.PLAYER_TWO, GameConstants.INITIAL_PLAYER_2_X, GameConstants.INITIAL_PLAYER_Y);
+        players[0] = new Player(playerOneID, GameConstants.INITIAL_PLAYER_1_X, GameConstants.INITIAL_PLAYER_Y);
+        players[1] = new Player(playerTwoID, GameConstants.INITIAL_PLAYER_2_X, GameConstants.INITIAL_PLAYER_Y);
 
         events = new LinkedList<Event>();
 
