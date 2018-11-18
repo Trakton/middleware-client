@@ -1,8 +1,6 @@
 package game;
 
-import game.constants.GameConstants;
 import game.entities.Player;
-import game.entities.Bullet;
 import game.entities.events.Event;
 import game.events.EventsConsumer;
 
@@ -17,12 +15,19 @@ public class GameLoop extends JPanel implements ActionListener {
 
     static public Player[] players;
     static public Queue<Event> events;
+    static public GameState state;
 
     static long lastFrameTime;
     static long currentFrameTime;
     Timer timer;
 
+    static public double deltaTime(){
+        return (double)(currentFrameTime - lastFrameTime)/1_000_000_000.0;
+    }
+
     public GameLoop() {
+        state = new GameState();
+
         players = new Player[2];
         players[0] = new Player(GameConstants.PLAYER_ONE, GameConstants.INITIAL_PLAYER_1_X, GameConstants.INITIAL_PLAYER_Y);
         players[1] = new Player(GameConstants.PLAYER_TWO, GameConstants.INITIAL_PLAYER_2_X, GameConstants.INITIAL_PLAYER_Y);
@@ -44,12 +49,22 @@ public class GameLoop extends JPanel implements ActionListener {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        for(Player player : players){
-            g.drawImage(player.sprite, player.x, player.y, this);
+        switch(state.state){
+            case PENDING:
+                players[0].draw(g, this);
+                drawText(g, "Waiting for other player...");
+                break;
+            case TO_START:
+                for(Player player: players) player.draw(g, this);
+                drawText(g, String.format("Game will start in %.2f seconds!", state.countdown));
+            case STARTED:
+                for(Player player: players) player.draw(g, this);
+                break;
+            case OVER:
+                for(Player player: players) player.draw(g, this);
+                drawText(g, String.format("Game Over! Player %d won!", state.winner));
+                break;
 
-            for(Bullet bullet : player.bullets){
-                g.drawImage(bullet.sprite, bullet.x, bullet.y, this);
-            }
         }
 
         Toolkit.getDefaultToolkit().sync();
@@ -59,8 +74,14 @@ public class GameLoop extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         EventsConsumer.consume();
 
-        for(Player player : players){
-            player.update();
+        switch(state.state){
+            case TO_START:
+                state.updateCountdown();
+            case STARTED:
+                for(Player player : players) player.update();
+                break;
+            default:
+                break;
         }
 
         repaint();
@@ -69,7 +90,11 @@ public class GameLoop extends JPanel implements ActionListener {
         currentFrameTime = System.nanoTime();
     }
 
-    static public double deltaTime(){
-        return (double)(currentFrameTime - lastFrameTime)/1_000_000_000.0;
+    void drawText(Graphics g, String msg){
+        Font small = new Font("Helvetica", Font.BOLD, 14);
+        FontMetrics metr = getFontMetrics(small);
+        g.setColor(Color.white);
+        g.setFont(small);
+        g.drawString(msg, (GameConstants.BOARD_WIDTH - metr.stringWidth(msg)) / 2, GameConstants.BOARD_HEIGHT / 2);
     }
 }

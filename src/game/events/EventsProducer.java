@@ -23,4 +23,20 @@ public class EventsProducer {
         event.data.put(EventData.PLAYER, Integer.toString(player));
         GameLoop.events.add(event);
     }
+
+    static public void handleToStart(){
+        Event event = new Event(EventTypes.TO_START);
+        GameLoop.events.add(event);
+    }
+
+    static public void handleStarted(){
+        Event event = new Event(EventTypes.STARTED);
+        GameLoop.events.add(event);
+    }
+
+    static public void handleOver(int winner){
+        Event event = new Event(EventTypes.OVER);
+        event.data.put(EventData.WINNER, Integer.toString(winner));
+        GameLoop.events.add(event);
+    }
 }

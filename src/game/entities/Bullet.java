@@ -1,7 +1,7 @@
 package game.entities;
 
 import game.GameLoop;
-import game.constants.GameConstants;
+import game.GameConstants;
 
 public class Bullet extends Sprite {
 

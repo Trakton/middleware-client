@@ -1,9 +1,12 @@
 package game.entities;
 
 import game.GameLoop;
-import game.constants.GameConstants;
+import game.GameConstants;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 public class Player extends Sprite {
 
@@ -49,5 +52,20 @@ public class Player extends Sprite {
 
     public void moveDown(){
         y += GameConstants.PLAYER_SPEED * GameLoop.deltaTime();
+    }
+
+    @Override
+    public void draw(Graphics g, JPanel target){
+        super.draw(g, target);
+
+        for(Bullet bullet: bullets){
+            bullet.draw(g, target);
+        }
+
+        for(int i = 0; i < lives; i++){
+            int x = id == GameConstants.PLAYER_ONE? GameConstants.LIVE_PLAYER_1_X : GameConstants.LIVE_PLAYER_2_X;
+            Sprite live = new Sprite(i, x + i*GameConstants.LIVE_SIZE, GameConstants.LIVE_Y, GameConstants.LIVE_SPRITE);
+            live.draw(g, target);
+        }
     }
 }

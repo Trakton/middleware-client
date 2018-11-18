@@ -1,6 +1,6 @@
 package game.entities;
 
-import game.constants.GameConstants;
+import game.GameConstants;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,5 +32,9 @@ public class Sprite {
 
     public boolean intersects(Sprite sprite){
         return this.getBounds().intersects(sprite.getBounds());
+    }
+
+    public void draw(Graphics g, JPanel target){
+        g.drawImage(sprite, x, y, target);
     }
 }

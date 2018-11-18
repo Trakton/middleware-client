@@ -1,6 +1,5 @@
 package game;
 
-import game.constants.GameConstants;
 import game.events.EventsProducer;
 
 import java.awt.event.KeyAdapter;
@@ -10,6 +9,7 @@ public class GameController extends KeyAdapter {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        if(GameLoop.state.state != GameStates.STARTED) return;
 
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             EventsProducer.handleMoveUp(GameConstants.PLAYER_ONE);

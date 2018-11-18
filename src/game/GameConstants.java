@@ -1,9 +1,12 @@
-package game.constants;
+package game;
 
 public class GameConstants {
     // Board
     static public final int BOARD_WIDTH = 800;
     static public final int BOARD_HEIGHT = 600;
+
+    //State
+    static public final int TO_START_COUNTDOWN = 7;
 
     //Player
     static public final int PLAYER_SIZE = 40;
@@ -15,10 +18,17 @@ public class GameConstants {
     static public final int PLAYER_ONE = 0;
     static public final int PLAYER_TWO = 1;
 
+    //Live
+    static public final int LIVE_Y = 30;
+    static public final int LIVE_PLAYER_1_X = 50;
+    static public final int LIVE_SIZE = 25;
+    static public final int LIVE_PLAYER_2_X = BOARD_WIDTH - 3*LIVE_SIZE - 50;
+
     //Bullet
-    static public final int BULLET_SPEED = 2000;
+    static public final int BULLET_SPEED = 1000;
 
     //Resources
     static public final String PLAYER_SPRITE = "src/resources/player.png";
     static public final String BULLET_SPRITE = "src/resources/bullet.png";
+    static public final String LIVE_SPRITE = "src/resources/live.png";
 }
