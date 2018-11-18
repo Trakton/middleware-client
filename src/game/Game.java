@@ -1,6 +1,6 @@
 package client;
 
-import game.GameController;
+import game.GameLoop;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 public class Game extends JFrame  {
 
     public Game() {
-        add(new GameController());
+        add(new GameLoop());
         setResizable(false);
         pack();
         setTitle("Middleware Game Client");

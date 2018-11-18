@@ -19,4 +19,12 @@ public class Player {
         lives = GameConstants.INITIAL_LIVES;
         sprite = (new ImageIcon(GameConstants.PLAYER_SPRITE)).getImage();
     }
+
+    public void moveUp(){
+        y -= GameConstants.PLAYER_SPEED;
+    }
+
+    public void moveDown(){
+        y += GameConstants.PLAYER_SPEED;
+    }
 }
