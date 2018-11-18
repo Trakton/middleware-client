@@ -1,5 +1,6 @@
 package game.entities;
 
+import game.GameLoop;
 import game.constants.GameConstants;
 
 public class Bullet extends Sprite {
@@ -13,6 +14,6 @@ public class Bullet extends Sprite {
     }
 
     public void update(){
-        x += GameConstants.BULLET_SPEED * direction;
+        x += GameConstants.BULLET_SPEED * direction * GameLoop.deltaTime();
     }
 }

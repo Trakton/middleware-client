@@ -18,6 +18,8 @@ public class GameLoop extends JPanel implements ActionListener {
     static public Player[] players;
     static public Queue<Event> events;
 
+    static long lastFrameTime;
+    static long currentFrameTime;
     Timer timer;
 
     public GameLoop() {
@@ -34,6 +36,8 @@ public class GameLoop extends JPanel implements ActionListener {
 
         timer = new Timer(0, this);
         timer.start();
+
+        lastFrameTime = currentFrameTime = System.nanoTime();
     }
 
     @Override
@@ -60,5 +64,12 @@ public class GameLoop extends JPanel implements ActionListener {
         }
 
         repaint();
+
+        lastFrameTime = currentFrameTime;
+        currentFrameTime = System.nanoTime();
+    }
+
+    static public double deltaTime(){
+        return (double)(currentFrameTime - lastFrameTime)/1_000_000_000.0;
     }
 }

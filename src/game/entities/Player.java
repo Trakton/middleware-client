@@ -44,10 +44,10 @@ public class Player extends Sprite {
     }
 
     public void moveUp(){
-        y -= GameConstants.PLAYER_SPEED;
+        y -= GameConstants.PLAYER_SPEED * GameLoop.deltaTime();
     }
 
     public void moveDown(){
-        y += GameConstants.PLAYER_SPEED;
+        y += GameConstants.PLAYER_SPEED * GameLoop.deltaTime();
     }
 }
