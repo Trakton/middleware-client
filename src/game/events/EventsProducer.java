@@ -17,4 +17,10 @@ public class EventsProducer {
         event.data.put(EventData.PLAYER, Integer.toString(player));
         GameLoop.events.add(event);
     }
+
+    static public void handleFire(int player){
+        Event event = new Event(EventTypes.FIRE);
+        event.data.put(EventData.PLAYER, Integer.toString(player));
+        GameLoop.events.add(event);
+    }
 }

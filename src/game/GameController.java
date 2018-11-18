@@ -18,5 +18,9 @@ public class GameController extends KeyAdapter {
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             EventsProducer.handleMoveDown(GameConstants.PLAYER_ONE);
         }
+
+        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            EventsProducer.handleFire(GameConstants.PLAYER_ONE);
+        }
     }
 }

@@ -19,6 +19,9 @@ public class EventsConsumer {
             case MOVE_DOWN:
                 handleMoveDown(event);
                 break;
+            case FIRE:
+                handleFire(event);
+                break;
             default:
                 break;
         }
@@ -32,5 +35,10 @@ public class EventsConsumer {
     static void handleMoveDown(Event event){
         int player = Integer.parseInt(event.data.get(EventData.PLAYER));
         GameLoop.players[player].moveDown();
+    }
+
+    static void handleFire(Event event){
+        int player = Integer.parseInt(event.data.get(EventData.PLAYER));
+        GameLoop.players[player].fire();
     }
 }
