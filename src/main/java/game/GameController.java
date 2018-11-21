@@ -1,9 +1,11 @@
 package game;
 
+import com.caio.middleware.MiddlewareException;
 import game.events.EventsProducer;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 public class GameController extends KeyAdapter {
 
@@ -12,15 +14,33 @@ public class GameController extends KeyAdapter {
         if(GameLoop.state.state != GameStates.STARTED) return;
 
         if (e.getKeyCode() == KeyEvent.VK_UP) {
-            EventsProducer.handleMoveUp(GameLoop.getPlayerOne().id);
+            try {
+                EventsProducer.handleMoveUp(GameLoop.getPlayerOne().id);
+            } catch (MiddlewareException e1) {
+                e1.printStackTrace();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
 
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            EventsProducer.handleMoveDown(GameLoop.getPlayerOne().id);
+            try {
+                EventsProducer.handleMoveDown(GameLoop.getPlayerOne().id);
+            } catch (MiddlewareException e1) {
+                e1.printStackTrace();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
 
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-            EventsProducer.handleFire(GameLoop.getPlayerOne().id);
+            try {
+                EventsProducer.handleFire(GameLoop.getPlayerOne().id);
+            } catch (MiddlewareException e1) {
+                e1.printStackTrace();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
     }
 }

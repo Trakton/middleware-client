@@ -29,4 +29,11 @@ public class GameConstants {
     static public final String PLAYER_SPRITE = "src/main/resources/player.png";
     static public final String BULLET_SPRITE = "src/main/resources/bullet.png";
     static public final String LIVE_SPRITE = "src/main/resources/live.png";
+
+    // Topics
+    public static final int GAME_STATUS_TOPIC = 1;
+    public static final int MOVE_TOPIC = 2;
+    public static final int FIRE_TOPIC = 3;
+    public static final int USER_TOPIC = 4;
+    public static final int SIGN_IN_TOPIC = 5;
 }

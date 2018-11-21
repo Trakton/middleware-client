@@ -29,12 +29,10 @@ public class GameLoop extends JPanel implements ActionListener {
     static public boolean isPlayerOne(int id){ return players[0].id == id;}
     static public Player getPlayerOne() {return players[0];}
 
-    public GameLoop(int playerOneID, int playerTwoID) {
+    public GameLoop() {
         state = new GameState();
 
         players = new Player[2];
-        players[0] = new Player(playerOneID, GameConstants.INITIAL_PLAYER_1_X, GameConstants.INITIAL_PLAYER_Y);
-        players[1] = new Player(playerTwoID, GameConstants.INITIAL_PLAYER_2_X, GameConstants.INITIAL_PLAYER_Y);
 
         events = new LinkedList<Event>();
 
@@ -47,6 +45,11 @@ public class GameLoop extends JPanel implements ActionListener {
         timer.start();
 
         lastFrameTime = currentFrameTime = System.nanoTime();
+    }
+    public void start(int playerOneID, int playerTwoID) {
+        players[0] = new Player(playerOneID, GameConstants.INITIAL_PLAYER_1_X, GameConstants.INITIAL_PLAYER_Y);
+        players[1] = new Player(playerTwoID, GameConstants.INITIAL_PLAYER_2_X, GameConstants.INITIAL_PLAYER_Y);
+
     }
 
     @Override
