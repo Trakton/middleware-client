@@ -33,9 +33,10 @@ public class Game extends JFrame {
   }
 
   public static void main(String[] args) throws IOException, MiddlewareException {
+    final Game game = new Game();
     EventQueue.invokeLater(
         () -> {
-          JFrame ex = new Game();
+          JFrame ex = game;
           ex.setVisible(true);
         });
 

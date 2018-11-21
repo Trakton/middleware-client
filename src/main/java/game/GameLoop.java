@@ -77,7 +77,6 @@ public class GameLoop extends JPanel implements ActionListener {
 
     switch (state.state) {
       case PENDING:
-        players[0].draw(g, this);
         drawText(g, "Waiting for other player...");
         break;
       case TO_START:

@@ -34,7 +34,7 @@ public class EventsProducer {
     // Midleware connection
     if (player == Game.playerMe) {
 
-      Move message = Move.newBuilder().setPlayer(player).setDirection(Direction.UP).build();
+      Move message = Move.newBuilder().setPlayer(player).setDirection(Direction.DOWN).build();
       Game.proxy.getTopic(GameConstants.MOVE_TOPIC).produce(message);
     }
   }
