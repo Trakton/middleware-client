@@ -11,7 +11,7 @@ public class GameStatusCallable implements Callable<GameStatus> {
     if (State.TO_START.equals(gameStatus.getState())) {
       int playerone = Game.playerMe;
       int playertwo = gameStatus.getPlayerOne();
-      if(playerone == playertwo) playertwo = gameStatus.getPlayerTwo();
+      if (playerone == playertwo) playertwo = gameStatus.getPlayerTwo();
 
       Game.gameLoop.start(playerone, playertwo);
       EventsProducer.handleToStart();
