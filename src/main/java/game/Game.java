@@ -47,5 +47,7 @@ public class Game extends JFrame {
         .createTopic(GameConstants.GAME_STATUS_TOPIC, GameStatus.parser())
         .onMessage(new GameStatusCallable());
     proxy.createTopic(GameConstants.USER_TOPIC, User.parser()).onMessage(new UserCallable());
+    proxy.start();
+    proxy.getTopic(GameConstants.SIGN_IN_TOPIC).produce(SignIn.newBuilder().setPlayer(playerMe).build());
   }
 }
