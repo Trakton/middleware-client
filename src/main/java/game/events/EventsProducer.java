@@ -48,7 +48,7 @@ public class EventsProducer {
     if (player == Game.playerMe) {
 
       Fire message = Fire.newBuilder().setPlayer(player).build();
-      Game.proxy.getTopic(GameConstants.MOVE_TOPIC).produce(message);
+      Game.proxy.getTopic(GameConstants.FIRE_TOPIC).produce(message);
     }
   }
 
